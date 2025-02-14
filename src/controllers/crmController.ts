@@ -26,34 +26,42 @@ export const getContacts = async (req: Request, res: Response): Promise <void> =
       
     };
 
-export const getContactWithID = (req: Request, res: Response) => {~
+export const getContactWithID = async (req: Request, res: Response): Promise <void> => {
+    try {
+        const contact = await Contact.findById(req.params.contactId);
+        if (!contact) {
+            res.status(404).json({ message: 'Contact not found' });
+        }
+        res.status(201).json(contact);
+        } catch (err) {
+            res.status(500).send(err);
+            }
+    };
+
+export const updateContact = async (req: Request, res: Response): Promise <void> => {
 
     try {
-        
-    }
-
-    Contact.findById(req.params.contactId, (err, contact) => {
-        if (err) {
-            res.send(err);
+        const contact = await Contact.findOneAndUpdate( {_id: req.params.contactId}, req.body, { new: true });
+        if (!contact) {
+            res.status(404).json({ message: 'Contact not found' });
+            return;
         }
-        res.json(contact);
-    });
-}
+        res.status(200).json(contact);
+        } catch (err) {
+            res.status(500).send(err);
+            }
+    };
 
-export const updateContact = (req: Request, res: Response) => {
-    Contact.findOneAndUpdate({ _id: req.params.contactId}, req.body, { new: true }, (err, contact) => {
-        if (err) {
-            res.send(err);
-        }
-        res.json(contact);
-    })
-}
+export const deleteContact = async (req: Request, res: Response): Promise <void> => {
 
-export const deleteContact = (req: Request, res: Response) => {
-    Contact.remove({ _id: req.params.contactId }, (err, contact) => {
-        if (err) {
-            res.send(err);
-        }
-        res.json({ message: 'Successfully deleted contact'});
-    })
+try {
+    const result = await Contact.deleteOne({ _id: req.params.contactId });
+   if (result.deletedCount === 0) {
+    res.status(404).json({ message: 'Contact not found' });
+    return;
 }
+    res.status(200).json({message: 'Contact deleted successfully'});
+    } catch (err) {
+        res.status(500).send(err);
+        }
+};
