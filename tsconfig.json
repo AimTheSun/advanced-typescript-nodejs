@@ -4,7 +4,7 @@
     "module": "commonjs",
     "strict": true,
     "outDir": "./dist",
-    "esModuleInterop": false
+    "esModuleInterop": true
   },
   "include": ["src/**/*", "index.ts"],
   "exclude": ["node_modules"]

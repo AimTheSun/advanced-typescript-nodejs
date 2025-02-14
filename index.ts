@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import routes from "./src/routes/crmRoutes";
+import messenger from "./src/controllers/createMessage";
 
 const app = express();
 //number type
@@ -11,6 +12,9 @@ const database: string = "mongodb://localhost/CRMdb";
 
 //array
 //let simpleArray: number[] = [1, 2, 3, 4];
+
+// instance messenger class
+let messages = new messenger(PORT);
 
 // mongoose connection
 mongoose.Promise = global.Promise;
@@ -25,8 +29,8 @@ routes(app);
 // serving static files
 app.use(express.static("public"));
 
-app.get("/", (req: Request, res: Response) =>
-  res.send(`Node and express server is running on port ${PORT}`)
+app.get("/", (req: Request, res: Response): any =>
+  res.send(messages.messagePrint())
 );
 
-app.listen(PORT, () => console.log(`your server is running on port ${PORT}`));
+app.listen(PORT, () => console.log(messages.messagePrint()));

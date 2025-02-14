@@ -1,3 +1,4 @@
+import { Express } from 'express-serve-static-core';
 import { 
     addNewContact, 
     getContacts, 
@@ -6,9 +7,9 @@ import {
     deleteContact 
 } from '../controllers/crmController';
 
-const routes = (app) => {
+const routes = (app: Express) => {
     app.route('/contact')
-    .get((req, res, next) => {
+    .get((req: { originalUrl: any; method: any; }, res: any, next: () => void) => {
         // middleware
         console.log(`Request from: ${req.originalUrl}`)
         console.log(`Request type: ${req.method}`)
