@@ -25,7 +25,11 @@ This project explores advanced TypeScript features and their application in real
 
 ## Requirements  
 - Node.js (v16+)  
-- TypeScript (v5+)  
+- TypeScript (v5+)
+
+
+## License  
+This project is licensed under the MIT License. 
 
 
 
