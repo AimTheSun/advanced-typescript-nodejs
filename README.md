@@ -23,4 +23,10 @@ This project explores advanced TypeScript features and their application in real
    npm start  
    ```  
 
+## Requirements  
+- Node.js (v16+)  
+- TypeScript (v5+)  
+
+
+
 
