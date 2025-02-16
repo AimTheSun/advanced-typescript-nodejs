@@ -8,3 +8,19 @@ This project explores advanced TypeScript features and their application in real
 - **Resource Management**: Utilizing `Disposable` and `AsyncDisposable`.  
 - **Error Handling**: Managing complex error scenarios with `SuppressedError`.  
 
+## Getting Started  
+1. Clone the repository:  
+   ```sh
+   git clone https://github.com/your-username/your-repo.git  
+   cd your-repo  
+   ```  
+2. Install dependencies:  
+   ```sh
+   npm install  
+   ```  
+3. Run the project:  
+   ```sh
+   npm start  
+   ```  
+
+
