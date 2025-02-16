@@ -1,11 +1,16 @@
+export type Environment = 'development' | 'production' | 'staging';
+
 export default class Messenger {
   port: number;
+  environment: Environment;
 
-  constructor(port: number) {
+  constructor(port: number, environment: Environment) {
     this.port = port;
+    this.environment = environment;
   }
 
   messagePrint() {
-    return `Node and express server is running on port ${this.port}`;
+    return `Node and express server is running on port ${this.port} in ${this.environment}`;
   }
 }
+
